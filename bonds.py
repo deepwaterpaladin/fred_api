@@ -1,4 +1,3 @@
-from fredapi import Fred
 import pandas as pd
 from datetime import date
 from fred_api_key import fred
