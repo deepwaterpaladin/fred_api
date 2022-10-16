@@ -1,3 +1,4 @@
 *.ipynb
 *.env
-/fred_api_key.py
+*.DS_Store
+/fred_api_key.
