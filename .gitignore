@@ -1,4 +1,5 @@
 *.ipynb
+*.txt
 *.env
 *.DS_Store
-/fred_api_key.
+*__pycache__
