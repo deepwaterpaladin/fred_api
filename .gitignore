@@ -1,5 +1,3 @@
-/.ipynb_checkpoints
-/.analysis.ipynb
-/__pycache__
+*.ipynb
+*.env
 /fred_api_key.py
-/test.ipynb
