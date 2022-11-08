@@ -3,3 +3,4 @@
 /__pycache__
 /fred_api_key.py
 /test.ipynb
+.env
