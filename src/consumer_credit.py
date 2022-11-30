@@ -1,7 +1,7 @@
 from fredapi import Fred
 import pandas as pd
 from datetime import date
-from fred_api_key import fred
+from src.fred_api_key import fred
 
 class Credit():
     def __init__(self):
