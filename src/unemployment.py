@@ -1,7 +1,7 @@
 import pandas as pd
 from fredapi import Fred
 from datetime import date
-from src.fred_api_key import fred
+from fred_api_key import fred
 
 class Unemployment():
     def __init__(self)-> None:
