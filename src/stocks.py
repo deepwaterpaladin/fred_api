@@ -1,7 +1,6 @@
 import pandas as pd
 from fredapi import Fred
-
-fred = Fred(api_key='0a0852f4eadd224b0385af8d43134120')
+from src.fred_api_key import fred
 
 class SP500():
     def __init__(self) -> None:

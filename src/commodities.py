@@ -141,14 +141,13 @@ class NaturalGas():
 class Oil():
     def __init__(self) -> None:
         pass
-    def west_texas_intermediate(self, format='daily', observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+    def west_texas_intermediate(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
         '''Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma - Dollars per Barrel, Not Seasonally Adjusted '''
         self.data = fred.get_series('DCOILWTICO', observation_start = observation_start, observation_end = observation_end)
         return pd.DataFrame(self.data,columns=['Price'])
     
-    def brent_crude(self, format='daily', observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+    def brent_crude(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
         '''Crude Oil Prices: Brent - Europe - Dollars per Barrel, Not Seasonally Adjusted '''
         self.data=fred.get_series('DCOILBRENTEU', observation_start = observation_start, observation_end = observation_end)
         return pd.DataFrame(self.data,columns=['Price'])
 
-        

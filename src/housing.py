@@ -1,7 +1,7 @@
 import pandas as pd
 from fredapi import Fred
 from datetime import date
-from fred_api_key import fred
+from src.fred_api_key import fred
 
 
 class Housing():
