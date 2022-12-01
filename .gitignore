@@ -1,6 +1,6 @@
-/.ipynb_checkpoints
-/.analysis.ipynb
-/__pycache__
-/fred_api_key.py
-/test.ipynb
-.env
+*.ipynb
+*.env
+*.DS_Store
+*__pycache__
+*.db
+/analysis.py

@@ -1,6 +1,7 @@
 import yfinance as yf
 import pandas as pd
 from datetime import date
+from fred_api_key import fred
 
 class Stock():
     def __init__(self, ticker) -> None:
