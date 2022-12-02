@@ -14,5 +14,5 @@
 
 ## TODO
 
-1. Add more data to the database
+1. Refactor in the style of `class Oil` in `commodities.py`
 1. Clean up requirements.txt
