@@ -1,172 +1,1401 @@
 from datetime import date
 from fred_api_key import fred
 import pandas as pd
+import plotly.express as px
 import datetime
 
 
 class Commodity():
     def __init__(self):
         pass
-    def wheat(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        ''' Global price of Wheat, U.S. Dollars per Metric Ton, Not Seasonally Adjusted'''
-        self.data = fred.get_series('PWHEAMTUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def barley(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        ''' Global price of Barley, U.S. Dollars per Metric Ton, Not Seasonally Adjusted '''
-        self.data = fred.get_series('PBARLUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def corn(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        ''' Global price of Corn, U.S. Dollars per Metric Ton, Not Seasonally Adjusted '''
-        self.data = fred.get_series('PMAIZMTUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def iron_ore(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        ''' Global price of Iron Ore, U.S. Dollars per Metric Ton, Not Seasonally Adjusted '''
-        self.data = fred.get_series('PIORECRUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def aluminum(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PALUMUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def copper(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Global price of Copper, Monthly (U.S. Dollars per Ton)'''
-        self.data = fred.get_series('PCOPPUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data, columns=['Price'])
-    def metal_index(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PMETAINDEXM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def soybeans(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PSOYBUSDQ', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def shrimp(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PSHRIUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def beef(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PBEEFUSDQ', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def bananas(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PBANSOPUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def cotton(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PCOTTINDUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def zinc(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PZINCUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def olive_oil(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('POLVOILUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def fish(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PSALMUSDA', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def shellfish(self, adjusted=False, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Producer Price Index by Commodity: Processed Foods and Feeds: Unprocessed Shellfish'''
-        if adjusted == True:
-            self.data = fred.get_series('WPS022305', observation_start = observation_start, observation_end=observation_end)
-        else:
-            self.data = fred.get_series('WPU022305', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Index December 1991 = 100'])
-    def nickel(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PNICKUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def uranium(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PURANUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def us_lng(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('MNGLCP', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def coffee(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PCOFFOTMUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def poultry(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PPOULTUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def cocoa(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PCOCOUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def swine(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PPORKUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def lead(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PLEADUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def tin(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PTINUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
-    def lamb(self, observation_start='01/01/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        self.data = fred.get_series('PLAMBUSDM', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
 
-class NaturalGas():
-    def __init__(self) -> None:
-        pass
-    def spot_price(self, format='daily', observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Henry Hub Natural Gas Spot Price'''
-        if format == 'monthly':
-            self.data = fred.get_series('MHHNGSP', observation_start = observation_start, observation_end=observation_end)
-        elif format == 'weekly':
-            self.data = fred.get_series('WHHNGSP', observation_start = observation_start, observation_end=observation_end)
-        elif format == 'annual' or format == 'yearly':
-            self.data = fred.get_series('AHHNGSP', observation_start = observation_start, observation_end=observation_end)
-        else:
-            self.data = fred.get_series('DHHNGSP', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data, columns=['Dollars per Million BTUs'])
-    def ppi(self, observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Producer Price Index by Commodity: Fuels and Related Products and Power: Natural Gas '''
-        self.data = fred.get_series('WPU0531', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data, columns=['Index 1982=100'])
-    def ppi_to_consumers(self, observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Producer Price Index by Industry: Natural Gas Distribution: Natural Gas to Ultimate Consumers (Monthly)'''
-        self.data = fred.get_series('PCU22121022121011', observation_start = observation_start, observation_end=observation_end)
-        return pd.DataFrame(self.data, columns=['Index December 1990=100'])
-    def consumption(self, adjusted=True, observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Natural Gas Consumption'''
-        if adjusted==True:
-            self.data = fred.get_series('NATURALGASD11', observation_start = observation_start, observation_end = observation_end) # Seasonally Adjusted
-        else:
-            self.data = fred.get_series('NATURALGAS', observation_start = observation_start, observation_end = observation_end) # Non Seasonally Adjusted
-        return pd.DataFrame(self.data, columns=['Billion Cubic Feet'])
-    def LNG_composite_price(self, format='monthly', observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''U.S. Natural Gas Liquid Composite Price'''
-        if format == 'annually' or format == 'yearly':
-            self.data = fred.get_series('ANGLCP', observation_start = observation_start, observation_end = observation_end)
-        else:
-            self.data = fred.get_series('MNGLCP', observation_start = observation_start, observation_end = observation_end)
-        return pd.DataFrame(self.data, columns=['Dollars per Million BTUs'])
-    def capacity_utilization(self, format='monthly', observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Capacity Utilization: Utilities: Natural Gas Distribution (NAICS = 2212)'''
-        if format == 'quarterly':
-            self.data = fred.get_series('CAPUTLG2212SQ', observation_start = observation_start, observation_end = observation_end)
-        else:
-            self.data = fred.get_series('CAPUTLG2212S', observation_start = observation_start, observation_end = observation_end)
-        return pd.DataFrame(self.data, columns=['Percent of Capacity'])
-
-class Oil():
-    def __init__(self) -> None:
-        pass
-    
-    
-    class WestTexasIntermediate():
+    class Oil():
+        #TODO: add method to plot WTI and BC from the Oil class
         def __init__(self) -> None:
-            self.key = 'DCOILWTICO'
+            pass
         
-        def spot_price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-            '''Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma - Dollars per Barrel, Not Seasonally Adjusted '''
-            self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
-            return pd.DataFrame(self.data,columns=['Price'])
+        def price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            self.group = pd.DataFrame({"West Texas Intermediate":self.WestTexasIntermediate().spot_price()['Price'], "Brent Crude":self.BrentCrude().spot_price()['Price']})
+            return self.group
 
-        def one_week_price(self)->pd.DataFrame:
-            self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
-            return pd.DataFrame(self.data,columns=['Price'])
-    
-    
-    class BrentCrude():
+        class WestTexasIntermediate():
+            def __init__(self) -> None:
+                self.key = 'DCOILWTICO'
+
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='West Texas Intermediate, Price over time', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars')
+                self.fig.show()
+
+            def spot_price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma - Dollars per Barrel, Not Seasonally Adjusted '''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+        
+        class BrentCrude():
+            def __init__(self) -> None:
+                self.key = 'DCOILBRENTEU'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='West Texas Intermediate, Price over time', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars')
+                self.fig.show()
+
+            def spot_price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Crude Oil Prices: Brent - Europe - Dollars per Barrel, Not Seasonally Adjusted '''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=['Price'])
+
+    class Metals():
         def __init__(self) -> None:
-            self.key = 'DCOILBRENTEU'
+            pass
         
-        def spot_price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-            '''Crude Oil Prices: Brent - Europe - Dollars per Barrel, Not Seasonally Adjusted '''
-            self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
-            return pd.DataFrame(self.data,columns=['Price'])
+        class IronOre():
+            def __init__(self) -> None:
+                self.key = 'PIORECRUSDM'
+                self.column_title = 'USD per Metric Tonne'
 
-        def one_week_price(self)->pd.DataFrame:
-            self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
-            return pd.DataFrame(self.data,columns=['Price'])
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global Price of Iron Ore', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title=f'{self.column_title}')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Aluminum():
+            def __init__(self) -> None:
+                self.key = 'PALUMUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Aluminum', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Copper():
+            def __init__(self) -> None:
+                self.key = 'PCOPPUSDM'
+                self.column_title = 'USD per Metric Tonne'
+
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global Price of Copper', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title=f'{self.column_title}')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Nickel():
+            def __init__(self) -> None:
+                self.key = 'PNICKUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Nickel', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Zinc():
+            def __init__(self) -> None:
+                self.key = 'PZINCUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Zinc', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Lead():
+            def __init__(self) -> None:
+                self.key = 'PLEADUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Lead', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Tin():
+            def __init__(self) -> None:
+                self.key = 'PTINUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Tin', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Uranium():
+            def __init__(self) -> None:
+                self.key = 'PURANUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Uranium', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+    class Agriculture():
+        def __init__(self) -> None:
+            pass
+        
+        class Wheat():
+            def __init__(self) -> None:
+                ''' Global price of Wheat, U.S. Dollars per Metric Ton, Not Seasonally Adjusted'''
+                self.key = 'PWHEAMTUSDM'
+                self.column_title = 'USD per Metric Tonne'
+
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global Price of Wheat', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title=f'{self.column_title}')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Barley():
+            def __init__(self) -> None:
+                ''' Global price of Barley, U.S. Dollars per Metric Ton, Not Seasonally Adjusted '''
+                self.key = 'PBARLUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Barley', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Corn():
+            def __init__(self) -> None:
+                ''' Global price of Corn, U.S. Dollars per Metric Ton, Not Seasonally Adjusted '''
+                self.key = 'PMAIZMTUSDM'
+                self.column_title = 'USD per Metric Tonne'
+
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global Price of Corn', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title=f'{self.column_title}')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Soybeans():
+            def __init__(self) -> None:
+                self.key = 'PSOYBUSDQ'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Soybeans', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Bananas():
+            def __init__(self) -> None:
+                self.key = 'PBANSOPUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Bananas', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Cotton():
+            def __init__(self) -> None:
+                self.key = 'PCOTTINDUSDM'
+                self.column_title = 'U.S. Cents per Pound'
+
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global Price of Cotton', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title=f'{self.column_title}')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class OliveOil():
+            def __init__(self) -> None:
+                self.key = 'POLVOILUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Olive Oil', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Coffee():
+            def __init__(self) -> None:
+                '''Global price of Coffee, Other Mild Arabica'''
+                self.key = 'PCOFFOTMUSDM'
+                self.column_title = 'US Cents per Pound'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Zinc', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Cocoa():
+            def __init__(self) -> None:
+                '''Global price of Cocoa'''
+                self.key = 'PCOCOUSDM'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Tin', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+    class Livestock():
+        def __init__(self) -> None:
+            pass
+
+        class Shrimp():
+            def __init__(self) -> None:
+                self.key = 'PSHRIUSDM'
+                self.column_title = 'USD per Kilogram'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Shrimp', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Kilogram')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Beef():
+            def __init__(self) -> None:
+                self.key = 'PBEEFUSDQ'
+                self.column_title = 'U.S. Cents per Pound'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Beef', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='U.S. Cents per Pound')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Fish():
+            def __init__(self) -> None:
+                self.key = 'PSALMUSDA'
+                self.column_title = 'USD per Metric Tonne'
+
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global Price of Fish', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title=f'{self.column_title}')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Shellfish():
+            def __init__(self) -> None:
+                '''Producer Price Index by Commodity: Processed Foods and Feeds: Unprocessed Shellfish'''
+                self.key = 'WPU022305'
+                self.column_title = 'USD per Metric Tonne'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Shellfish', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Poultry():
+            def __init__(self) -> None:
+                self.key = 'PPOULTUSDM'
+                self.column_title = 'US Cents per Pound'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Poultry', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+        class Swine():
+            def __init__(self) -> None:
+                self.key = 'PPORKUSDM'
+                self.column_title = 'US Cents per Pound'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Swine', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+        
+        class Lamb():
+            def __init__(self) -> None:
+                self.key = 'PLAMBUSDM'
+                self.column_title = 'US Cents per Pound'
+            
+            def plot(self, time_series:pd.DataFrame)->None:
+                self.fig = px.line(time_series).update_layout(title='Global price of Lamb', legend_title='', title_font_family="Raleway")
+                self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title='United States Dollars per Metric Ton')
+                self.fig.show()
+
+            def global_price(self, observation_start='01/02/1990', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+                '''Global price of Aluminum'''
+                self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def two_week_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=14)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def one_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=30)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def three_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=91)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def six_month_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=182)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def one_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=365)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def three_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1095)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+            
+            def five_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=1825)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+            def ten_year_price(self)->pd.DataFrame:
+                self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=3650)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+                return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
+    class NaturalGas():
+        def __init__(self) -> None:
+            pass
+        def spot_price(self, format='daily', observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Henry Hub Natural Gas Spot Price'''
+            if format == 'monthly':
+                self.data = fred.get_series('MHHNGSP', observation_start = observation_start, observation_end=observation_end)
+            elif format == 'weekly':
+                self.data = fred.get_series('WHHNGSP', observation_start = observation_start, observation_end=observation_end)
+            elif format == 'annual' or format == 'yearly':
+                self.data = fred.get_series('AHHNGSP', observation_start = observation_start, observation_end=observation_end)
+            else:
+                self.data = fred.get_series('DHHNGSP', observation_start = observation_start, observation_end=observation_end)
+            return pd.DataFrame(self.data, columns=['Dollars per Million BTUs'])
+        def ppi(self, observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Producer Price Index by Commodity: Fuels and Related Products and Power: Natural Gas '''
+            self.data = fred.get_series('WPU0531', observation_start = observation_start, observation_end=observation_end)
+            return pd.DataFrame(self.data, columns=['Index 1982=100'])
+        def ppi_to_consumers(self, observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Producer Price Index by Industry: Natural Gas Distribution: Natural Gas to Ultimate Consumers (Monthly)'''
+            self.data = fred.get_series('PCU22121022121011', observation_start = observation_start, observation_end=observation_end)
+            return pd.DataFrame(self.data, columns=['Index December 1990=100'])
+        def consumption(self, adjusted=True, observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Natural Gas Consumption'''
+            if adjusted==True:
+                self.data = fred.get_series('NATURALGASD11', observation_start = observation_start, observation_end = observation_end) # Seasonally Adjusted
+            else:
+                self.data = fred.get_series('NATURALGAS', observation_start = observation_start, observation_end = observation_end) # Non Seasonally Adjusted
+            return pd.DataFrame(self.data, columns=['Billion Cubic Feet'])
+        def LNG_composite_price(self, format='monthly', observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''U.S. Natural Gas Liquid Composite Price'''
+            if format == 'annually' or format == 'yearly':
+                self.data = fred.get_series('ANGLCP', observation_start = observation_start, observation_end = observation_end)
+            else:
+                self.data = fred.get_series('MNGLCP', observation_start = observation_start, observation_end = observation_end)
+            return pd.DataFrame(self.data, columns=['Dollars per Million BTUs'])
+        def capacity_utilization(self, format='monthly', observation_start='01/01/2000', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Capacity Utilization: Utilities: Natural Gas Distribution (NAICS = 2212)'''
+            if format == 'quarterly':
+                self.data = fred.get_series('CAPUTLG2212SQ', observation_start = observation_start, observation_end = observation_end)
+            else:
+                self.data = fred.get_series('CAPUTLG2212S', observation_start = observation_start, observation_end = observation_end)
+            return pd.DataFrame(self.data, columns=['Percent of Capacity'])
+
+  
