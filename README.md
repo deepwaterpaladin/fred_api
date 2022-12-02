@@ -13,7 +13,6 @@
 - [FRED API Documentation](https://fred.stlouisfed.org/docs/api/fred/)
 
 ## TODO
-
 1. Refactor following files in the style of `class Oil` in `commodities.py`
     - [ ] `bonds.py`
     - [ ] `business_expectations.py`
@@ -27,4 +26,4 @@
     - [ ] `stocks.py`
     - [ ] `uncertainty.py`
     - [ ] `unemployment.py`
-1. Clean up requirements.txt
+1. Add more data to the database
