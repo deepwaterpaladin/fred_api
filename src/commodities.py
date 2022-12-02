@@ -1,7 +1,8 @@
-from fredapi import Fred
-import pandas as pd
 from datetime import date
 from fred_api_key import fred
+import pandas as pd
+import datetime
+
 
 class Commodity():
     def __init__(self):
@@ -141,13 +142,31 @@ class NaturalGas():
 class Oil():
     def __init__(self) -> None:
         pass
-    def west_texas_intermediate(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma - Dollars per Barrel, Not Seasonally Adjusted '''
-        self.data = fred.get_series('DCOILWTICO', observation_start = observation_start, observation_end = observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
     
-    def brent_crude(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
-        '''Crude Oil Prices: Brent - Europe - Dollars per Barrel, Not Seasonally Adjusted '''
-        self.data=fred.get_series('DCOILBRENTEU', observation_start = observation_start, observation_end = observation_end)
-        return pd.DataFrame(self.data,columns=['Price'])
+    
+    class WestTexasIntermediate():
+        def __init__(self) -> None:
+            self.key = 'DCOILWTICO'
+        
+        def spot_price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma - Dollars per Barrel, Not Seasonally Adjusted '''
+            self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+            return pd.DataFrame(self.data,columns=['Price'])
 
+        def one_week_price(self)->pd.DataFrame:
+            self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+            return pd.DataFrame(self.data,columns=['Price'])
+    
+    
+    class BrentCrude():
+        def __init__(self) -> None:
+            self.key = 'DCOILBRENTEU'
+        
+        def spot_price(self, observation_start='01/02/1986', observation_end=date.today().strftime("%m/%d/%Y"))->pd.DataFrame:
+            '''Crude Oil Prices: Brent - Europe - Dollars per Barrel, Not Seasonally Adjusted '''
+            self.data=fred.get_series(self.key, observation_start = observation_start, observation_end = observation_end)
+            return pd.DataFrame(self.data,columns=['Price'])
+
+        def one_week_price(self)->pd.DataFrame:
+            self.data=fred.get_series(self.key, observation_start=(date.today() - datetime.timedelta(days=7)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
+            return pd.DataFrame(self.data,columns=['Price'])
