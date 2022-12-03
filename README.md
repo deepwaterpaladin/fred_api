@@ -38,7 +38,7 @@
     - [ ] `delinquency.py`
     - [ ] `exchange_rate.py`
     - [ ] `housing.py`
-    - [ ] `monetary_policy.py`
+    - [X] `monetary_base.py`
     - [ ] `producer_prices.py`
     - [ ] `stocks.py`
     - [ ] `uncertainty.py`
