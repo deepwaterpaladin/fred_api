@@ -43,4 +43,5 @@
     - [ ] `stocks.py`
     - [ ] `uncertainty.py`
     - [ ] `unemployment.py`
+1. Add method to standardize units in commodities.py
 1. Add more data to the database
