@@ -13,6 +13,19 @@ class Commodity():
         def __init__(self) -> None:
             pass
         
+        def plot_all(self):
+            self.data = {"Iron Ore":self.IronOre().global_price()["USD per Metric Tonne"], 
+                         "Aluminum":self.Aluminum().global_price()["USD per Metric Tonne"], 
+                         "Copper":self.Copper().global_price()["USD per Metric Tonne"], 
+                         "Nickel":self.Nickel().global_price()["USD per Metric Tonne"],
+                         "Zinc":self.Zinc().global_price()["USD per Metric Tonne"], 
+                         "Lead":self.Lead().global_price()["USD per Metric Tonne"], 
+                         "Tin":self.Tin().global_price()["USD per Metric Tonne"], 
+                         "Uranium":self.Uranium().global_price()["USD per Metric Tonne"]}
+            self.fig = px.line(self.data).update_layout(title='Global Price of Metals', legend_title='', title_font_family="Raleway")
+            self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title="USD per Metric Tonne")
+            self.fig.show()
+
         class IronOre():
             def __init__(self) -> None:
                 self.key = 'PIORECRUSDM'
@@ -423,6 +436,19 @@ class Commodity():
         def __init__(self) -> None:
             pass
         
+        def plot_all(self):
+            '''Excludes coffee & cotton'''
+            self.data = {"Wheat":self.Wheat().global_price()["USD per Metric Tonne"], 
+                         "Barley":self.Barley().global_price()["USD per Metric Tonne"], 
+                         "Corn":self.Corn().global_price()["USD per Metric Tonne"], 
+                         "Soybeans":self.Soybeans().global_price()["USD per Metric Tonne"],
+                         "Bananas":self.Bananas().global_price()["USD per Metric Tonne"], 
+                         "Olive Oil":self.OliveOil().global_price()["USD per Metric Tonne"], 
+                         "Cocoa":self.Cocoa().global_price()["USD per Metric Tonne"]}
+            self.fig = px.line(self.data).update_layout(title='Global Price of Agriculture Products', legend_title='', title_font_family="Raleway")
+            self.fig.update_xaxes(title='Date', rangeselector_font_family="Times New Roman",rangeslider_visible=True).update_yaxes(title="USD per Metric Tonne")
+            self.fig.show()
+
         class Wheat():
             def __init__(self) -> None:
                 ''' Global price of Wheat, U.S. Dollars per Metric Ton, Not Seasonally Adjusted'''
