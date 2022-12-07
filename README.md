@@ -20,6 +20,11 @@
        - returns a pandas dataframe
     - Plot the data via the `plot()` method
        - returns a `plotly` chart
+1. `monetary_base.py` features:
+    - `MonetaryBase()` is the main class
+        - `TotalMB()`, `Currency()`, `Reserve()`, `SwissMB()`, `M1()`, `M1Velo()`, `M2()`, & `M2Velo()` are the subclasses
+1. `exchange_rate.py` features:
+    - `SpotRate()` is the main class
 1. As files in the `src` directory are updated, the `README.md` file will be updated to reflect the changes (eventually this will be `__init__.py` file being updated once this is a proper package)
 
 ## About FRED API
@@ -36,7 +41,7 @@
     - [X] `commodities.py`
     - [ ] `consumer_credit.py`
     - [ ] `delinquency.py`
-    - [ ] `exchange_rate.py`
+    - [X] `exchange_rate.py`
     - [ ] `housing.py`
     - [X] `monetary_base.py`
     - [ ] `producer_prices.py`
