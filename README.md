@@ -39,7 +39,7 @@
     - [ ] `bonds.py`
     - [ ] `business_expectations.py`
     - [X] `commodities.py`
-    - [ ] `consumer_credit.py`
+    - [X] `consumer_credit.py`
     - [ ] `delinquency.py`
     - [X] `exchange_rate.py`
     - [ ] `housing.py`
