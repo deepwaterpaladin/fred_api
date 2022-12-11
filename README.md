@@ -37,7 +37,7 @@
 
 1. Refactor following files in the style of `class Oil` in `commodities.py`:
     - [ ] `bonds.py`
-    - [ ] `business_expectations.py`
+    - [X] `business_expectations.py`
     - [X] `commodities.py`
     - [X] `consumer_credit.py`
     - [ ] `delinquency.py`
