@@ -5,3 +5,4 @@
 *.db
 /analysis.py
 .ipynb_checkpoints
+fred_api_key.py
