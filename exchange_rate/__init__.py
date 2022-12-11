@@ -1,0 +1,1 @@
+from exchange_rate.CADxUSD import SpotRate
