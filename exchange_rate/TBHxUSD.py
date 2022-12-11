@@ -6,9 +6,9 @@ import plotly.express as px
 
 class SpotRate():
     def __init__(self) -> None:
-        self.key = 'DEXCAUS'
-        self.column_title = 'Canadian Dollars to One USD'
-        self.title = 'Canadian Dollars to U.S. Dollar Spot Exchange Rate'
+        self.key = 'DEXTHUS'
+        self.column_title = 'Thai Baht to One USD'
+        self.title = ' Thai Baht to U.S. Dollar Spot Exchange Rate'
     
     def plot(self, time_series:pd.DataFrame)->None:
         self.fig = px.line(time_series).update_layout(title=f'{self.title}', legend_title='', title_font_family="Raleway")

@@ -5,10 +5,11 @@ from .fred_api_key import fred
 import plotly.express as px
 
 class SpotRate():
+    '''Hong Kong Dollars to U.S. Dollar Spot Exchange Rate'''
     def __init__(self) -> None:
-        self.key = 'DEXCAUS'
-        self.column_title = 'Canadian Dollars to One USD'
-        self.title = 'Canadian Dollars to U.S. Dollar Spot Exchange Rate'
+        self.key = 'DEXHKUS'
+        self.column_title = 'Hong Kong Dollars to One USD'
+        self.title = 'Hong Kong Dollars to U.S. Dollar Spot Exchange Rate'
     
     def plot(self, time_series:pd.DataFrame)->None:
         self.fig = px.line(time_series).update_layout(title=f'{self.title}', legend_title='', title_font_family="Raleway")
@@ -66,3 +67,4 @@ class SpotRate():
     def twenty_year_price(self)->pd.DataFrame:
         self.data=fred.get_series(self.key, observation_start=(date.today() - timedelta(days=7300)).strftime("%m/%d/%Y"), observation_end=date.today().strftime("%m/%d/%Y"))
         return pd.DataFrame(self.data,columns=[f'{self.column_title}'])
+
